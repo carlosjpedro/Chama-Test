@@ -10,19 +10,19 @@ using Newtonsoft.Json;
 
 namespace Chama.Signup.Workers
 {
-    public class Function1
+    public class SignUpProcessorFunction
     {
         private readonly IStudentManager _studentManager;
-        private readonly ILogger _logger;
+        private readonly IEmailSender _emailSender;
 
-        public Function1(IStudentManager studentManager, ILogger logger)
+        public SignUpProcessorFunction(IStudentManager studentManager, IEmailSender emailSender)
         {
             _studentManager = studentManager;
-            _logger = logger;
+            _emailSender = emailSender;
         }
 
-        [FunctionName("Function1")]
-        public void Run([QueueTrigger("student-signup", Connection = "AzureWebJobsStorage")]string message)
+        [FunctionName("SignUpProcessorFunction")]
+        public void Run([QueueTrigger("student-signup", Connection = "AzureWebJobsStorage")]string message, ILogger logger)
         {
             try
             {
@@ -34,16 +34,17 @@ namespace Chama.Signup.Workers
                     Age = content.StudentAge
                 };
                 _studentManager.AddStudentToCourse(content.CourseId, student);
+                _emailSender.SendEmail(student.Email, "Registered");
             }
             catch (ChamaException e)
             {
-                _logger.LogError(e.Message);
+                logger.LogError(e.Message);
             }
             catch (Exception e)
             {
-                _logger.LogCritical(e.Message);
+                logger.LogCritical(e.Message);
             }
-            _logger.LogInformation($"C# Queue trigger function processed: {message}");
+            logger.LogInformation($"C# Queue trigger function processed: {message}");
         }
     }
 }
