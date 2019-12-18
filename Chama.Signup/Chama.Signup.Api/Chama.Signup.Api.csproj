@@ -13,9 +13,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.0.0-rc5" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.0.0-rc5" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="5.0.0-rc5" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Chama.Signup.Messages\Chama.Signup.Messages.csproj" />
     <ProjectReference Include="..\Chama.Signup.Repositories\Chama.Signup.Repositories.csproj" />
     <ProjectReference Include="..\Chama.Signup.Services\Chama.Signup.Services.csproj" />
   </ItemGroup>

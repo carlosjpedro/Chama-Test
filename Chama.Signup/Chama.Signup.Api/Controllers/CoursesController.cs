@@ -1,12 +1,10 @@
-﻿using System.Net;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AutoMapper;
 using Chama.Signup.Api.Dtos;
-using Chama.Signup.Services;
-using Chama.Signup.Services.Models;
+using Chama.Signup.Api.QueueClient;
+using Chama.Signup.Messages;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
 
 namespace Chama.Signup.Api.Controllers
 {
@@ -14,34 +12,32 @@ namespace Chama.Signup.Api.Controllers
     [ApiController]
     public class CoursesController : ControllerBase
     {
-        private readonly IStudentManager _studentManager;
+        private readonly IQueueClient _queueClient;
         private readonly IMapper _mapper;
 
-        public CoursesController(IStudentManager studentManager, IMapper mapper)
+        public CoursesController(IQueueClient queueClient, IMapper mapper)
         {
-            _studentManager = studentManager;
+            _queueClient = queueClient;
             _mapper = mapper;
         }
 
 
-        /// <summary>
-        /// Add student to course
-        /// </summary>
-        /// <param name="courseId">Course Id</param>
-        /// <param name="student">New Student</param>
-        /// <returns></returns>
-        /// <response code="404">Course Not Found</response>
-        /// <response code="400">Invalid Student Data</response>
         [HttpPost]
         [Route("{courseId:int}/students")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-
-        public ActionResult AddStudent(int courseId, StudentDto student)
+        public async Task<ActionResult> AddStudentAsync(int courseId, StudentDto student)
         {
-            _studentManager.AddStudentToCourse(courseId, _mapper.Map<Student>(student));
-            return Ok("Student added to course.");
+            var message = new SignupMessageContent
+            {
+                CourseId = courseId,
+                StudentAge = student.Age,
+                StudentName = student.Name,
+                StudentEmail = student.Email
+            };
+
+            await _queueClient.SendMessage(message);
+            return Accepted();
         }
     }
 }

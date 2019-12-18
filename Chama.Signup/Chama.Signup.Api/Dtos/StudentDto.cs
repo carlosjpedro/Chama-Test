@@ -10,6 +10,7 @@ namespace Chama.Signup.Api.Dtos
         [EmailAddress]
         public string Email { get; set; }
         [Required]
+        [Range(1, int.MaxValue)]
         public int Age { get; set; }
     }
 }

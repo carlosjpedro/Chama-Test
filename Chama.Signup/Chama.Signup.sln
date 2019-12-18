@@ -7,11 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chama.Signup.Api", "Chama.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chama.Signup.Api.Tests", "Chama.Signup.Api.Tests\Chama.Signup.Api.Tests.csproj", "{1915CF2C-DDAD-4A70-9754-3AA038540DE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chama.Signup.Repositories", "Chama.Signup.Repositories\Chama.Signup.Repositories.csproj", "{8C59336C-CB98-442C-A9AC-AAAFACF37D97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chama.Signup.Repositories", "Chama.Signup.Repositories\Chama.Signup.Repositories.csproj", "{8C59336C-CB98-442C-A9AC-AAAFACF37D97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chama.Signup.Services", "Chama.Signup.Services\Chama.Signup.Services.csproj", "{4818DD3C-4346-4337-B738-8FE7440E9E93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chama.Signup.Services", "Chama.Signup.Services\Chama.Signup.Services.csproj", "{4818DD3C-4346-4337-B738-8FE7440E9E93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chama.Signup.Services.UnitTests", "Chama.Signup.Services.UnitTests\Chama.Signup.Services.UnitTests.csproj", "{58C547BB-878D-40AE-A7B1-A557C2E8A52B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chama.Signup.Services.UnitTests", "Chama.Signup.Services.UnitTests\Chama.Signup.Services.UnitTests.csproj", "{58C547BB-878D-40AE-A7B1-A557C2E8A52B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chama.Signup.Messages", "Chama.Signup.Messages\Chama.Signup.Messages.csproj", "{CBAEDC34-4AE4-4287-ACEC-39A68AA63FCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chama.Signup.Workers", "Chama.Signup.Workers\Chama.Signup.Workers.csproj", "{9CD9D3F7-71FA-4F46-82BE-96FC5741E9F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{58C547BB-878D-40AE-A7B1-A557C2E8A52B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58C547BB-878D-40AE-A7B1-A557C2E8A52B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58C547BB-878D-40AE-A7B1-A557C2E8A52B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBAEDC34-4AE4-4287-ACEC-39A68AA63FCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBAEDC34-4AE4-4287-ACEC-39A68AA63FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBAEDC34-4AE4-4287-ACEC-39A68AA63FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBAEDC34-4AE4-4287-ACEC-39A68AA63FCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CD9D3F7-71FA-4F46-82BE-96FC5741E9F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CD9D3F7-71FA-4F46-82BE-96FC5741E9F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CD9D3F7-71FA-4F46-82BE-96FC5741E9F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CD9D3F7-71FA-4F46-82BE-96FC5741E9F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
