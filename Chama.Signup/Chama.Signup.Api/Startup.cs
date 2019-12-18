@@ -1,15 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using Chama.Signup.Api.Mappings;
+using Chama.Signup.Repositories;
+using Chama.Signup.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
+
 
 namespace Chama.Signup.Api
 {
@@ -25,7 +25,21 @@ namespace Chama.Signup.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ChamaContext>(options =>
+                options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+
+
             services.AddControllers();
+            services.AddSwaggerGen(c =>
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Chama Api",
+                    Version = "v1"
+                }));
+            services.AddAutoMapper(typeof(ChamaDtoProfiles).Assembly);
+            services.AddTransient<IStudentRepository, StudentRepository>();
+            services.AddTransient<ICourseRepository, CourseRepository>();
+            services.AddTransient<IStudentManager, StudentManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +49,10 @@ namespace Chama.Signup.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler();
+            }
 
             app.UseHttpsRedirection();
 
@@ -42,10 +60,25 @@ namespace Chama.Signup.Api
 
             app.UseAuthorization();
 
+            app.UseExceptionMiddleware();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Chama Api");
+            });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<ChamaContext>();
+                DbInit.Init(context);
+            }
         }
     }
 }
