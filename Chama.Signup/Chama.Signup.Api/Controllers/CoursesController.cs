@@ -44,8 +44,7 @@ namespace Chama.Signup.Api.Controllers
         }
 
         [HttpGet]
-
-        public ActionResult GetDetail(int courseId)
+        public ActionResult GetDetails()
         {
             var details = _detailProvider.GetCourses();
             return Ok(details);
