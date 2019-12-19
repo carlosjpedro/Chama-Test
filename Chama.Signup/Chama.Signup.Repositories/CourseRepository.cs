@@ -22,7 +22,7 @@ namespace Chama.Signup.Repositories
         public void AddStudent(int courseId, StudentEntity student)
         {
             var course = _dbContext.Courses.First(x => x.Id == courseId);
-            course.MaxStudents--;
+            course.Capacity--;
             student.Course = course;
             _dbContext.Students.Add(student);
             _dbContext.SaveChanges();

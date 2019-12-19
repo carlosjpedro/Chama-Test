@@ -11,5 +11,6 @@ namespace Chama.Signup.Repositories
 
         public DbSet<CourseEntity> Courses { get; set; }
         public DbSet<StudentEntity> Students { get; set; }
+        public DbSet<CourseSummaryEntity> Summaries { get; set; }
     }
 }

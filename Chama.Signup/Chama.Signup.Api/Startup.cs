@@ -36,6 +36,9 @@ namespace Chama.Signup.Api
             services.AddSingleton<IQueueClient, QueueClient.QueueClient>(_ =>
                 new QueueClient.QueueClient(Configuration.GetConnectionString("StorageConnectionString"), "student-signup"));
 
+            services.AddTransient<ICourseDetailProvider, CourseDetailProvider>();
+            services.AddDbContext<ChamaContext>(options =>
+                options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,11 +73,11 @@ namespace Chama.Signup.Api
                 endpoints.MapControllers();
             });
 
-            //using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            //{
-            //    var context = serviceScope.ServiceProvider.GetRequiredService<ChamaContext>();
-            //    DbInit.Init(context);
-            //}
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<ChamaContext>();
+                DbInit.Init(context);
+            }
         }
     }
 }

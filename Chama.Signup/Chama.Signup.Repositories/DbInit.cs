@@ -15,7 +15,7 @@ namespace Chama.Signup.Repositories
                 new CourseEntity
                 {
                     MaxStudents = 0,
-                    Capacity = 10,
+                    Capacity = 0,
                     Name = "Full Course",
                     Teacher = "Mark"
                 },

@@ -4,7 +4,6 @@ using Chama.Signup.Services;
 using Chama.Signup.Services.Exceptions;
 using Chama.Signup.Services.Models;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 

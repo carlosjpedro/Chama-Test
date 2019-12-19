@@ -23,6 +23,7 @@ namespace Chama.Signup.Workers
             builder.Services.AddTransient<ICourseRepository, CourseRepository>();
             builder.Services.AddTransient<IStudentManager, StudentManager>();
             builder.Services.AddTransient<IEmailSender, EmailSender>();
+            builder.Services.AddTransient<IDataAggregator, DataAggregator>();
             builder.Services.AddAutoMapper(typeof(ChamaProfiles).Assembly);
             builder.Services.AddLogging(x => x.AddConsole());
         }

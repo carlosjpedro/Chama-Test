@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using Chama.Signup.Repositories;
 using Chama.Signup.Repositories.Entities;
 using Chama.Signup.Services.Exceptions;
@@ -28,7 +29,7 @@ namespace Chama.Signup.Services
                 throw new CourseNotFound();
             }
 
-            if (course.MaxStudents == 0)
+            if (course.Capacity == 0)
             {
                 throw new CourseFull();
             }

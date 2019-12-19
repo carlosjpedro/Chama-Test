@@ -3,6 +3,7 @@ using AutoMapper;
 using Chama.Signup.Api.Dtos;
 using Chama.Signup.Api.QueueClient;
 using Chama.Signup.Messages;
+using Chama.Signup.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,11 +14,13 @@ namespace Chama.Signup.Api.Controllers
     public class CoursesController : ControllerBase
     {
         private readonly IQueueClient _queueClient;
+        private readonly ICourseDetailProvider _detailProvider;
         private readonly IMapper _mapper;
 
-        public CoursesController(IQueueClient queueClient, IMapper mapper)
+        public CoursesController(IQueueClient queueClient, ICourseDetailProvider detailProvider, IMapper mapper)
         {
             _queueClient = queueClient;
+            _detailProvider = detailProvider;
             _mapper = mapper;
         }
 
@@ -38,6 +41,14 @@ namespace Chama.Signup.Api.Controllers
 
             await _queueClient.SendMessage(message);
             return Accepted();
+        }
+
+        [HttpGet]
+
+        public ActionResult GetDetail(int courseId)
+        {
+            var details = _detailProvider.GetCourses();
+            return Ok(details);
         }
     }
 }

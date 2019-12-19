@@ -5,11 +5,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Chama.Signup.Services
 {
-    public interface IEmailSender
-    {
-        void SendEmail(string email, string message);
-    }
-
     public class EmailSender : IEmailSender
     {
         private readonly ILogger _logger;
