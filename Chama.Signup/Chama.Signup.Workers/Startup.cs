@@ -8,7 +8,6 @@ using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
 
 [assembly: FunctionsStartup(typeof(Startup))]
 namespace Chama.Signup.Workers

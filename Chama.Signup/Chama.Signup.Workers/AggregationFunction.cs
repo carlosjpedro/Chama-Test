@@ -2,7 +2,6 @@ using System;
 using System.Threading.Tasks;
 using Chama.Signup.Repositories;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 
 namespace Chama.Signup.Workers

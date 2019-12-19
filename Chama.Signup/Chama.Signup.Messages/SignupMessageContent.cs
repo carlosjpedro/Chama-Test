@@ -1,6 +1,4 @@
-﻿using Microsoft.WindowsAzure.Storage.Queue;
-
-namespace Chama.Signup.Messages
+﻿namespace Chama.Signup.Messages
 {
     public class SignupMessageContent
     {

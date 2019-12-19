@@ -1,6 +1,4 @@
-using System.Linq;
 using AutoMapper;
-using Chama.Signup.Repositories;
 using Chama.Signup.Repositories.Entities;
 using Chama.Signup.Services.Exceptions;
 using Chama.Signup.Services.Models;

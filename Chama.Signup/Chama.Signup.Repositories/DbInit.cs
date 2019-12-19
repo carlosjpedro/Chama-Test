@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Chama.Signup.Repositories.Entities;
+﻿using Chama.Signup.Repositories.Entities;
 
 namespace Chama.Signup.Repositories
 {

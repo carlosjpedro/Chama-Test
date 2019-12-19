@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using Chama.Signup.Repositories;
 using Chama.Signup.Repositories.Entities;
 using Chama.Signup.Services.Exceptions;
